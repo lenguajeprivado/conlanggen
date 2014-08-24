@@ -43,7 +43,7 @@ Si te parece un programa útil y quieres mejorarlo, sientete libre de hacer un f
 
 <daniel.m.olivera@gmail.com>
 
-Twitter: [@jackeliand](twitter.com/JackEliand)
+Twitter: [@jackeliand](http://twitter.com/JackEliand)
 
 ## Copyleft
 
