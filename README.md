@@ -32,7 +32,7 @@ Para usarlo, escribe en la terminal
 
     python conlanggen.py
 
-Si usas Windows necesitas tener instalado [Python para Windows](https://www.python.org/download). Si necesitas instrucciones de cómo se usa, [revisa estas instrucciones](http://learnpythonthehardway.org/book/ex0.html).
+(Si usas Windows necesitas tener instalado [Python para Windows](https://windows.github.com/). Si necesitas instrucciones de cómo se usa, [revisa estas instrucciones](https://windows.github.com/help.html) ).
 
 ##Acerca de...
 Hice este programa para aprender a usar Python y llevo poco de aprender este lenguaje. No soy programador, soy lingüísta, así que seguramente tendré muchos vicios en cómo lo escribí.
