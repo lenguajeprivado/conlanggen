@@ -25,7 +25,7 @@ Para instalarlo desde el repositorio, en la terminal escribe:
     # copiar desde el repositorio
     git clone https://github.com/jackeliand/conlanggen.git
 
-(¿Únicamente usas Windows? Tendías que tener [esto](https://windows.github.com/) para bajar los repositorios de Git Para saber cómo se usa lee [estas instrucciones](https://windows.github.com/help.html) ).
+(¿Únicamente usas Windows? Tendías que tener [esto](https://windows.github.com/) para bajar los repositorios de Git. Para saber cómo se usa lee [estas instrucciones](https://windows.github.com/help.html) ).
 
 ##Uso
 Para usarlo, escribe en la terminal
