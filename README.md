@@ -25,7 +25,7 @@ Para instalarlo desde el repositorio, en la terminal escribe:
     # copiar desde el repositorio
     git clone https://github.com/jackeliand/conlanggen.git
 
-O simplemente baja el archivo llamado *conlanggen.py*
+(¿Únicamente usas Windows? Tendías que tener [esto](http://git-scm.com/download/win) para bajar los repositorios de Git)
 
 ##Uso
 Para usarlo, escribe en la terminal
