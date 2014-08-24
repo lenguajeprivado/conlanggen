@@ -35,14 +35,22 @@ Para usarlo, escribe en la terminal
 (Si usas Windows necesitas tener instalado [Python para Windows](https://www.python.org/download). Si necesitas instrucciones de cómo se usa, [revisa estas instrucciones](http://learnpythonthehardway.org/book/ex0.html). )
 
 ##Acerca de...
-Hice este programa para aprender a usar Python. 
-Está escrito en la versión 2.7.6
+
+Hice este programa para aprender a usar Python.
+
+Está escrito en la versión 2.7.6.
+
 Llevo poco de aprender este lenguaje. No soy programador; soy lingüísta, así que seguramente tendré muchos vicios en la forma en la que está estructudado el código.
+
 Creé este programa para usarlo en el "Taller de lenguas artificiales" que imparto en la FQ, UNAM (México).
+
 Es gratis.
+
 Si te parece un programa útil y quieres mejorarlo, sientete libre de hacer un fork de él (recuerda mencionarme en algun lugar del nuevo código).
 
-&copy; Daniel Martínez <daniel.m.olivera@gmail.com>
+&copy; Daniel Martínez 
+
+<daniel.m.olivera@gmail.com>
 
 Twitter: [@jackeliand](http://twitter.com/JackEliand)
 
