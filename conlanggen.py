@@ -1,199 +1,257 @@
 # -*- coding: utf-8 -*-
 
+
+### Recuerda que no sé nada de programación, por eso todo está feo.
+### Si encuentras fallos, dime para corregirlos o hazlo por tu cuenta
+### Sientete libre de usar lo que te sea útil o modificar todo mi programa.
+### Recuerda darme un poquito de crédito cuando lo hagas.
+
+from Tkinter import *   #traemos tkinter, un GUI para python
+from info import instr   #importo el archivo de texto para las instrucciones
 import random #módulo para el azar
 import sys #este módulo lo usaré como sys.stdout en lugar de print para mantener las letras juntas
 import time #módulo para agregar la fecha en el txt
+import codecs  #como hubo problemas para escribir el archivo en utf-8, uso este módulo
 
-#función que regresa a silaba[0]
-def y():
-        global g
+
+###----------- esta clase servirá para dirigir el ouput hacia la textbox
+class StdoutRedirector(object):
+    def __init__(self, text_area):
+        self.text_area = text_area
+    def write(self, str):
+        self.text_area.insert(END, str)
+        self.text_area.see(END)
+###--------- ouput ->textbox
+
+
+#####------ ESTE ES EL PROGRAMA PRINCIPAL
+def motor():
+        global a
         global x
-        g = silaba[x]
-        return g
+        a = 0
+        x = 0
+        #función que regresa a silaba[0]
+        def y():
+                global g
+                global x
+                g = silaba[x]
+                return g
+        #función que aumenta uno en silaba[x] para leer cada una de las letras de "silaba"
+        def yuno():
+                global g
+                global x
+                x = (x+1)
+                return x
+        #Con esto obtenemos el texto desde las entry. Cada una es dividida por las comas que ponga el usuario.
+        vocal = e1.get()
+        vocal.split(",")
+        conso = e2.get()
+        conso.split(",")
+        otros = e3.get()
+        otros.split(",")
+        modelos = sec.get('0.0', 'end')
+        modelos.split(",")
+        cont = int(numm.get()) #convertimos el número del spinbox a una integral (por si las dudas)
+        #Lee la variable "modelos" (las secuencias de palabras CVCVC), elige una al azar y la mete en la variable "silaba"
+        silaba = random.choice(modelos.split(","))
+        resultados.delete("1.0", END) #borro el textbox principal para que allí aparezcan las palabras
+        resultados.config(foreground="black") #cambio el color del texto de la textbox a negro 
+        while a < cont: #Esto es para cuántas veces queremos que repita el proceso (¿cuántas palabras?).
+                for len in silaba: #Len dice el número de caracteres en una cadena. CVVC=4
+                        y() #Reset silaba[0]
+                        if g == "C":  #Donde haya una C, escoje una consonante al azar, la muestra y la escribe al txt
+                                n = random.choice(conso.split(","))
+                                sys.stdout.write(n)
+                        elif g == "V":  #Donde haya una V, escoje una vocal al azar, la muestra y la escribe al txt
+                                n = random.choice(vocal.split(","))
+                                sys.stdout.write(n)
+                        elif g == "T":  #Donde haya una T, escoje otra letra al azar, la muestra y la escribe al txt
+                                n = random.choice(otros.split(","))
+                                sys.stdout.write(n)
+                        yuno() #silaba[+1] así lee cada una de las letras de "silaba"
+                print "  "
+                a += 1 # Contador +1, una palabra más.
+                x = 0 #Reset silaba[0]
+                silaba = random.choice(modelos.split(","))  #Elige un nuevo modelo de palabra
 
-#función que aumenta uno en silaba[x] para leer cada una de las letras de "silaba"
-def yuno():
-        global g
-        global x
-        x = (x+1)
-        return x
-
-#funcion que escribe los resultados al archivo txt
-def archivo():
-        global n
-        file.write(n),
+###----------- función que borra el texto en las entry
+def limpia():
+          e1.delete(0, END)
+          e2.delete(0, END)
+          e3.delete(0, END)
+          sec.delete("1.0", END)
+          resultados.delete("1.0", END)
+###--------------- limpia          
 
 
-### Inicia el menú cuando se abre el programa
-print """
-+conlanggen  (v. 1.0)+
-GENERADOR DE PALABRAS
+###--------El cuadro de "Acerca de..."
+def creditos():
+        que = ("\n\nEscrito por Daniel Martínez.\nCSH Lingüística - UAM Iztapalapa\nFFyL,UNAM\n\nPara el taller de lenguas artificiales\nFacultad de Química, UNAM\nSeptiembre 2014\nCiudad de México\n\ndaniel.m.olivera@gmail.com\n\n")
+        cre = Toplevel()
+        cre.title("Acerca de conlanggen 2.1")
+        l1 = Label(cre, text="\n\nconlanggen 2.1", font="bold", fg="white", bg="green")
+        l1.grid(row=1, column=1)
+        l2 = Label(cre, text=que)
+        l2.grid(row=2, column=1)
+        button = Button(cre, text="Ok", command=cre.destroy)
+        button.grid(row=3, column=1)
+###---------------- Acerca de...        
 
------Menú----
- 1  - Generar lista de palabras
- 2  - Ver instrucciones
- 3  - Salir
-"""
-menu = input("¿Qué deseas hacer? [1,2,3]: ") #El usuario ingresa opciones de menú
-if menu == 2:  #si elige la opción 2, muestra el texto
-        print ("\n")
-        print '''
-        INSTRUCCIONES  
-        
-        Este pequeño programa genera listas de palabras 
-        para utilizarlas en la creación de diccionarios de 
-        lenguas artificiales (conlangs).
-        
-        Se utiliza de la siguiente manera:
-        
-        1. LETRAS A USAR
-        
-        1.1 Primero hay que llenar el campo de las vocales. 
-        Al escribirlas hay que separar cada una con comas:
-        
-              Escribe las vocales [V]: a,e,i,o,u
-        
-        Se pueden utilizar signos sobre las vocales o
-        vocales dobles: aa,ö,í
-        
-        1.2 Despues se llena el campo de las consonantes.
-        También deben de ir separadas por comas. Se
-        pueden agregar consonantes geminadas.
-        
-              Escribe las consonantes [C]: p,t,k,b,d,g,th,ff
-        
-        1.3 Existe la categoría "otros" la cual sirve para
-        agregar letras características, sufijos o prefijos,
-        apostrofes, aspiradas o cualquier cosa que queramos
-        agregar. 
 
-              Escribe sufijos o prefijos [T]: ado,ido,to,so,cho
-                
-        2. FONOTÁCTICAS
-        
-        2.1 El programa permite, de manera muy elemental,
-        decidir cuales son las restricciones y la estructura 
-        de cada una de nuestras palabras.
-        
-        2.2  Hay que usar siempre las mayúsculas para que
-        funcione.
-        
-        2.3 Necesitamos agregar la forma en la quequeremos
-        que cada palabra esté compuesta.
-        Donde pongamos una C, irá una consonante.
-        Donde pongamos una V, irá una vocal.
-        Donde pongamos una T, aparecerán los sufijos y prefijos.
-        
-        2.4 Si queremos una palabra como "manzana" entonces
-        la estructura será "CVCCVCV". Para la palabra "vaca" 
-        sería "CVCV"
-        Si asignamos en sufijos y prefijos [T]  la terminación 
-        "-ido" y queremos una palabra como "comido" 
-        entonces la estructura sería CVCVT.
-        
-        2.5 Hay que separar con comas cada una de las 
-        estructuras.
-        
-        ¿Cuáles son las estructuras?: CV,CVC,TVC,CVCV,CCV,TVCV
-        
-        3. DETALLES
-        
-        3.1 Finalmente el programa preguntará cuántas palabras
-        queremos generar en nuestra lista:
-        
-        ¿Cuántas palabras?: 25
-        
-        3.2 El programa mostrará las palabras generadas y 
-        automáticamente creará un archivo llamado "palabras.txt"
-        en la carpeta donde se encuentra este programa.
-        Cada que se ejecuta el programa, sobreescribe este archivo
-        así que debes asegurarte de copiar tus palabras si quieres
-        generar una nueva lista.
-        
-        4. ACERCA DE
-        
-        conlanggen Ver. 1.0
-        Generador de palabras.
-        Creado por Daniel Martínez para el "Taller de lenguas
-        artificiales" de la FQ, UNAM. México, 2014
-        daniel.m.olivera@gmail.com
-        tw: @jackeliand
-        '''
-        
-        menu = input("[1  - Crear palabras]  [2  -  Salir] :") #Menú dentro de "instrucciones"
-        if menu == 1:
-                print " " #si elige 1, sólo escribe un espacio y sigue el programa
-        else:
-                quit()  #Con cualquier número que ponga, sale
-elif menu == 3: #Con la opción 3, sale.
-        quit()
+#---------- esta es la ventana de las instrucciones    
+def ventana():
+        top = Toplevel()
+        top.title("Instrucciones")
+        sc = Scrollbar(top)
+        sc.pack(side=RIGHT, fill=Y)
+        text = Text(top, width=60)
+        text.config(yscrollcommand=sc.set)
+        text.insert(END, instr)
+        sc.config(command=text.yview)
+        text.pack()
+        button = Button(top, text="Ok", command=top.destroy)
+        button.pack()
+#------------ ventana de instrucciones
 
-###Termina el menú
+####---- Esta funcion se encarga de guardar al txt     
+def guarda():
+        paratxt = resultados.get('0.0', 'end')
+        v = e1.get()
+        c = e2.get()
+        t = e3.get()
+        m = sec.get('0.0', 'end')
+        f = codecs.open('palabras.txt', mode='w', encoding='utf-8') #esto crea el archivo como file.open
+        #file = open('palabras.txt', 'w')
+        f.write("LISTA DE PALABRAS")
+        f.write("\n")
+        f.write("\n")
+        f.write (time.strftime("%d/%m/%Y")) ## dd/mm/yyyy format
+        f.write("\n")
+        f.write("------------------------")
+        f.write("\n")
+        f.write("Configuraciones")
+        f.write("\n")
+        f.write(v)
+        f.write("\n")
+        f.write(c)
+        f.write("\n")
+        f.write(t)
+        f.write("\n")
+        f.write(m)
+        f.write("\n")
+        f.write("------------------------")
+        f.write("\n")
+        f.write(paratxt)
+        f.write("\n")
+        f.write("\n")
+        f.close()  #cierra el txt
+        print('Lista guardada en "palabras.txt" ')
+###---------------------- guardado en el txt
 
-### Inicia la parte principal del programa
 
-#El usuario ingresa las letras. Se usa raw_input para que lea
-#las cadenas como listas. .split(",") indica que divide la lista
-#en las comas.
-print "\n"
-vocal = raw_input ("Escribe las vocales [V]:       ") .split (",")
-conso = raw_input ("Escribe las consonantes [C]:   ") .split (",")
-otros = raw_input ("Escribe sufijos o prefijos [T]:") .split (",")
-print "\n"
-modelos =  raw_input ("¿Cuáles son las estructuras? [C,V,T]:  ") .split (",")
-print "\n"
-#se agrega la variable "cont" para saber cuántas palabras generar
-cont = int(input("¿Generar cuántas palabras? [1-200]:    "))
 
-silaba = random.choice(modelos)
-#Lee la variable "modelos" (las secuencias de palabras CVCVC), elige una al azar y la
-#mete en la variable "silaba"
- 
-a = 0 #Este es el contador de cada una de las veces que crea una palabra
-x = 0 
-#Esta variable la uso para que lea cada uno de los caracteres de las cadenas
-#dentro de "silaba" así: silaba[x]. En este caso, como está en cero
-#lee la primera letra de la cadena que se haya elegido al azar.
 
-#### Esto es para crear el archivo txt y su cabecera
-file = open("palabras.txt", "w")
-file.write("LISTA DE PALABRAS")
-file.write("\n")
-file.write("\n")
-file.write (time.strftime("%d/%m/%Y")) ## dd/mm/yyyy format
-file.write("\n")
-file.write("\n")
-####Fin de la cabecera del txt
+###################
+###-------- Inicia el diseño de la ventana (del GUI)
+###################
+master = Tk()    #nombramos a la ventana principal como "master"
+master.wm_title("conlanggen v. 2.1")  #el título de la ventana
 
-while a < cont: #Esto es para cuántas veces queremos que repita el proceso (¿cuántas palabras?).
-        for len in silaba: #Len dice el número de caracteres en una cadena. CVVC=4
-                y() #Reset silaba[0]
-                if g == "C":  #Donde haya una C, escoje una consonante al azar, la muestra y la escribe al txt
-                        n = random.choice(conso)
-                        sys.stdout.write(n)
-                        archivo()
-                elif g == "V":  #Donde haya una V, escoje una vocal al azar, la muestra y la escribe al txt
-                        n = random.choice(vocal)
-                        sys.stdout.write(n)
-                        archivo()
-                elif g == "T":  #Donde haya una T, escoje otra letra al azar, la muestra y la escribe al txt
-                        n = random.choice(otros)
-                        sys.stdout.write(n)
-                        archivo()
-                yuno() #silaba[+1] así lee cada una de las letras de "silaba"
-        print "  "
-        file.write("\n")
-        a += 1 # Contador +1, una palabra más.
-        x = 0 #Reset silaba[0]
-        silaba = random.choice(modelos)  #Elige un nuevo modelo de palabra
+#------- El menú de la ventana
+menubar = Menu(master)
+
+archivomenu = Menu(menubar)
+archivomenu.add_command(label="Nuevo", command=limpia)
+archivomenu.add_command(label="Salir", command=master.quit)
+menubar.add_cascade(label="Archivo", menu=archivomenu)
+
+helpmenu = Menu(menubar)
+helpmenu.add_command(label="Instrucciones", command=ventana)
+helpmenu.add_separator()
+helpmenu.add_command(label="Acerca de", command=creditos)
+menubar.add_cascade(label="Ayuda", menu=helpmenu)
+
+master.config(menu=menubar) #mostrar el menú
+#----------- Menú
+
+###---- Aquí están las entry
+Label(master, text="Vocales [V]:").grid(row=0, column=0, sticky=E)
+Label(master, text="Consonantes [C]:").grid(row=1, column=0, sticky=E)
+Label(master, text="Suf - Pref [T]:").grid(row=2, column=0, sticky=E)
+
+e1 = Entry(master)
+e2 = Entry(master)
+e3 = Entry(master)
+
+e1.grid(row=0, column=1)
+e2.grid(row=1, column=1)
+e3.grid(row=2, column=1)
+
+Label(master, text="-------------------------------------", foreground="gray").grid(row=3, column=0, columnspan=2)
+
+Label(master, text="Secuencias: ").grid(row=4, column=0, sticky=E)
+sec = Text(master, height=3, width= 23)
+sec.grid(row=4, column=1, sticky=W)
+
+
+Label(master, text="-------------------------------------", foreground="gray").grid(row=5, column=0, columnspan=2)
+
+Label(master, text="Num. de palabras: ").grid(row=6, column=0, sticky=E)
+numm = Spinbox(master, from_=0, to=200, width=5)
+numm.grid(row=6, column=1, sticky=W)
+
+
+Label(master, text="  ", foreground="gray").grid(row=7, column=0, columnspan=2)
+
+b = Button(master, text="Limpiar", width=10, command=limpia)
+c = Button(master, text="GENERAR", width=10, command=motor)
+
+b.grid(row=8, column=0, sticky=E)
+c.grid(row=8, column=1)
+
+Label(master, text="   ").grid(row=9, column=0, columnspan=2)
+Label(master, text="   ").grid(row=0, column=3)
+
+
+###---------la textbox "principal"
+
+scr = Scrollbar(master)
+resultados = Text(master, height=15, width= 40, foreground="gray", yscrollcommand=scr.set)
+resultados.insert(INSERT, """conlanggen 2.1
+
+Agrega las vocales y consonantes
+separadas por una coma.
+Vocales [V]: a,e,i,o,u
+Consoantes [C]: p,t,k,b,d,g
+
+Agrega las secuencias que 
+quieres combinar. Deben de ir en
+mayúsculas y separadas por comas.
+Secuencias: CVC,CVVC,CVCV,CTV,TVC
+
+Indica cuántas palabras quieres generar
+
+""")
+scr.config(command=resultados.yview)
+resultados.grid(row=0, rowspan=8, column=4)
+scr.grid(rowspan=8,row=0,column=5, sticky=N+S)
+
+####---------textbox
+
+dd = Button(master, text="Guardar a .txt", width=10, command=guarda)
+dd.grid(row=8, column=4)
+
+
+sys.stdout = StdoutRedirector(resultados) # envía el ouput hacia el textbox
+
         
 
-file.close()  #cierra el txt
 
-print "\n"
-print 'Lista copiada a "palabras.txt".'  #frase de cierre
-print "\n"
-
-#Agosto 23, 2014
-#Generador de palabras conlanggen Ver. 1.0
+#Septiembre 14, 2014
+#Generador de palabras conlanggen Ver. 2.1
 #twitter: @jackeliand
+
+
+mainloop()
+
+#EOF
