@@ -46,9 +46,8 @@ O como un archivo de Python
 
 
 ## En Windows
-Si usas Windows necesitas tener instalado [Python para Windows](https://www.python.org/download). Si necesitas instrucciones de cómo se usa, [revisa estas instrucciones](http://learnpythonthehardway.org/book/ex0.html). 
 
-Estoy preparando un archivo .exe para poderlo usar en Windows.
+Subí una versión en .exe pero no se aún si funciona. Revisa la carpeta "win" de este proyecto.
 
 
 ## Notas de la versión.
