@@ -5,6 +5,8 @@ Si necesitas instrucciones de cómo se usa, [revisa estas instrucciones](http://
 
 Aún así, he creado un archivo .exe del programa.
 
-No tengo Windows para probarlo, así que  puedes sentirte afortunado si corre en tu computadora.
+[Bájalo de aquí](https://github.com/jackeliand/conlanggen/raw/master/win/conlanggen.exe) 
+
+No tengo Windows para probarlo, así que puedes sentirte afortunado si corre en tu computadora.
 
 Ojalá funcione.
