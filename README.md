@@ -34,14 +34,15 @@ Para instalarlo desde el repositorio (en Ubuntu, Linux Mint, Debian, etc) en la 
 
 ####Bajando un sólo archivo comprimido
 
-[Bajas este archivo a tu computadora](https://github.com/jackeliand/conlanggen/raw/master/conlanggen) y puedes utilizarlo como un ejecutable más, dandole doble click o escribiendo:
+[Baja este archivo a tu computadora](https://github.com/jackeliand/conlanggen/raw/master/conlanggen) y puedes utilizarlo como un ejecutable más, dandole doble click o escribiendo:
 
     ./conlanggen
+    
 ####Bajando el código directamente.
 
 [Baja el programa principal](https://github.com/jackeliand/conlanggen/raw/master/conlanggen.py) y el [archivo de ayuda](https://github.com/jackeliand/conlanggen/raw/master/info.py). 
 
-Colocalos en una misma carpeta y usalos como cualquier otro archivo de Python. 
+Colocalos en una misma carpeta y úsalos como cualquier otro archivo de Python. 
 
 En la terminal escribe
 
