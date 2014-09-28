@@ -55,11 +55,6 @@ En la terminal escribe
 ![conlanggen 2.1](/screenshots/02.jpg)
 
 
-## En Windows
-
-Subí una versión en .exe pero no se aún si funciona. Revisa la carpeta "win" de este proyecto.
-
-
 ## Notas de la versión.
 
 1.0 Versión solo en CLI
