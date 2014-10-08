@@ -49,8 +49,10 @@ En la terminal escribe
     python conlanggen.py
     
 ##Versión para Windows
+
 Elaboré una versión para usar en Windows.
-Es completamente funcional. [Encuentrala aquí](https://github.com/jackeliand/conlanggen/Win)
+
+Es completamente funcional. [Encuentrala aquí](https://github.com/jackeliand/conlanggen/tree/master/Win)
 
 ##Screenshots
 

@@ -1,6 +1,6 @@
 #conlanggen 2.1 para Windows
 
-Descarga [éste archivo](https://github.com/jackeliand/conlanggen/Win/conlanggen.exe).
+Descarga [éste archivo](https://github.com/jackeliand/conlanggen/raw/master/Win/conlanggen.exe).
 
 No se necesita instalación: es portable, sólo ábrelo y ya.  (Puedes llevarlo en una USB).
 
