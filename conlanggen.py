@@ -43,33 +43,57 @@ def motor():
                 x = (x+1)
                 return x
         #Con esto obtenemos el texto desde las entry. Cada una es dividida por las comas que ponga el usuario.
-        vocal = e1.get()
-        vocal.split(",")
-        conso = e2.get()
-        conso.split(",")
-        otros = e3.get()
-        otros.split(",")
-        modelos = sec.get('0.0', 'end')
-        modelos.split(",")
-        cont = int(numm.get()) #convertimos el número del spinbox a una integral (por si las dudas)
-        #Lee la variable "modelos" (las secuencias de palabras CVCVC), elige una al azar y la mete en la variable "silaba"
-        silaba = random.choice(modelos.split(","))
+        vocal1 = e1.get()
+        vocal1.split(",")
+        vocal2 = e2.get()
+        vocal2.split(",")
+        conso1 = e3.get()
+        conso1.split(",")
+        conso2 = e4.get()
+        conso2.split(",")
+        sufijos = e5.get()
+        sufijos.split(",")
+        prefijos = e6.get()
+        prefijos.split(",")
+        extra = e7.get()
+        extra.split(",")
+
         resultados.delete("1.0", END) #borro el textbox principal para que allí aparezcan las palabras
         resultados.config(foreground="black") #cambio el color del texto de la textbox a negro 
+        
+        modelos = sec.get('0.0', 'end')
+        #modelos.split(",")
+        cont = int(numm.get())
+        silaba = random.choice(modelos.split(","))
+        
         while a < cont: #Esto es para cuántas veces queremos que repita el proceso (¿cuántas palabras?).
                 for len in silaba: #Len dice el número de caracteres en una cadena. CVVC=4
                         y() #Reset silaba[0]
-                        if g == "C":  #Donde haya una C, escoje una consonante al azar, la muestra y la escribe al txt
-                                n = random.choice(conso.split(","))
+                        if g == "V":  #Donde haya una V, escoje una letra al azar, la muestra y la escribe al txt
+                                n = random.choice(vocal1.split(","))
                                 sys.stdout.write(n)
-                        elif g == "V":  #Donde haya una V, escoje una vocal al azar, la muestra y la escribe al txt
-                                n = random.choice(vocal.split(","))
+                        elif g == "B":  #Donde haya una B, escoje una letra al azar, la muestra y la escribe al txt
+                                n = random.choice(vocal2.split(","))
+                                sys.stdout.write(n)
+                        elif g == "C":  #Donde haya una C, escoje otra letra al azar, la muestra y la escribe al txt
+                                n = random.choice(conso1.split(","))
+                                sys.stdout.write(n)
+                        elif g == "K":  #Donde haya una K, escoje otra letra al azar, la muestra y la escribe al txt
+                                n = random.choice(conso2.split(","))
+                                sys.stdout.write(n)
+                        elif g == "S":  #Donde haya una S, escoje otra letra al azar, la muestra y la escribe al txt
+                                n = random.choice(sufijos.split(","))
+                                sys.stdout.write(n)
+                        elif g == "P":  #Donde haya una P, escoje otra letra al azar, la muestra y la escribe al txt
+                                n = random.choice(prefijos.split(","))
                                 sys.stdout.write(n)
                         elif g == "T":  #Donde haya una T, escoje otra letra al azar, la muestra y la escribe al txt
-                                n = random.choice(otros.split(","))
+                                n = random.choice(extra.split(","))
                                 sys.stdout.write(n)
+                        elif g != "\n":
+                                sys.stdout.write(g)
                         yuno() #silaba[+1] así lee cada una de las letras de "silaba"
-                print "  "
+                print("")
                 a += 1 # Contador +1, una palabra más.
                 x = 0 #Reset silaba[0]
                 silaba = random.choice(modelos.split(","))  #Elige un nuevo modelo de palabra
@@ -116,26 +140,38 @@ def ventana():
 ####---- Esta funcion se encarga de guardar al txt     
 def guarda():
         paratxt = resultados.get('0.0', 'end')
-        v = e1.get()
-        c = e2.get()
-        t = e3.get()
+        uno = e1.get()
+        dos = e2.get()
+        tres = e3.get()
+        cuatro = e4.get()
+        cinco = e5.get()
+        seis = e6.get()
+        siete = e7.get()
         m = sec.get('0.0', 'end')
         f = codecs.open('palabras.txt', mode='w', encoding='utf-8') #esto crea el archivo como file.open
         #file = open('palabras.txt', 'w')
-        f.write("LISTA DE PALABRAS")
-        f.write("\n")
-        f.write("\n")
+        f.write("LISTA DE PALABRAS\n\n")
+        #f.write("\n")
+        #f.write("\n")
         f.write (time.strftime("%d/%m/%Y")) ## dd/mm/yyyy format
+        #f.write("\n")
+        f.write("\n------------------------\n")
+        #f.write("\n")
+        f.write("Configuraciones\n")
+        #f.write("\n")
+        f.write(uno)
         f.write("\n")
-        f.write("------------------------")
+        f.write(dos)
         f.write("\n")
-        f.write("Configuraciones")
+        f.write(tres)
         f.write("\n")
-        f.write(v)
+        f.write(cuatro)
         f.write("\n")
-        f.write(c)
+        f.write(cinco)
         f.write("\n")
-        f.write(t)
+        f.write(seis)
+        f.write("\n")
+        f.write(siete)
         f.write("\n")
         f.write(m)
         f.write("\n")
@@ -175,41 +211,54 @@ master.config(menu=menubar) #mostrar el menú
 #----------- Menú
 
 ###---- Aquí están las entry
-Label(master, text="Vocales [V]:").grid(row=0, column=0, sticky=E)
-Label(master, text="Consonantes [C]:").grid(row=1, column=0, sticky=E)
-Label(master, text="Suf - Pref [T]:").grid(row=2, column=0, sticky=E)
+nter = 7
+Label(master, text="Vocales tipo 1 [V]:").grid(row=0, column=0, sticky=E)
+Label(master, text="Vocales tipo 2 [B]:").grid(row=1, column=0, sticky=E)
+Label(master, text="Consonantes tipo 1 [C]:").grid(row=2, column=0, sticky=E)
+Label(master, text="Consonantes tipo 2 [K]:").grid(row=3, column=0, sticky=E)
+Label(master, text="Sufijo [S]:").grid(row=4, column=0, sticky=E)
+Label(master, text="Prefijo [P]:").grid(row=5, column=0, sticky=E)
+Label(master, text="Suf - Pref (Extra) [T]:").grid(row=6, column=0, sticky=E)
 
 e1 = Entry(master)
 e2 = Entry(master)
 e3 = Entry(master)
+e4 = Entry(master)
+e5 = Entry(master)
+e6 = Entry(master)
+e7 = Entry(master)
 
 e1.grid(row=0, column=1)
 e2.grid(row=1, column=1)
 e3.grid(row=2, column=1)
+e4.grid(row=3, column=1)
+e5.grid(row=4, column=1)
+e6.grid(row=5, column=1)
+e7.grid(row=6, column=1)
 
-Label(master, text="-------------------------------------", foreground="gray").grid(row=3, column=0, columnspan=2)
+Label(master, text="-------------------------------------", foreground="gray").grid(row=nter, column=0, columnspan=2)
 
-Label(master, text="Secuencias: ").grid(row=4, column=0, sticky=E)
+Label(master, text="Secuencias: ").grid(row=nter+1, column=0, sticky=E)
 sec = Text(master, height=3, width= 23)
-sec.grid(row=4, column=1, sticky=W)
+sec.grid(row=nter+1, column=1, sticky=W)
 
 
-Label(master, text="-------------------------------------", foreground="gray").grid(row=5, column=0, columnspan=2)
+Label(master, text="-------------------------------------", foreground="gray").grid(row=nter+2, column=0, columnspan=2)
 
-Label(master, text="Num. de palabras: ").grid(row=6, column=0, sticky=E)
+Label(master, text="Num. de palabras: ").grid(row=nter+3, column=0, sticky=E)
 numm = Spinbox(master, from_=0, to=200, width=5)
-numm.grid(row=6, column=1, sticky=W)
+numm.grid(row=nter+3, column=1, sticky=W)
 
 
-Label(master, text="  ", foreground="gray").grid(row=7, column=0, columnspan=2)
+Label(master, text="  ", foreground="gray").grid(row=nter+4, column=0, columnspan=2)
 
 b = Button(master, text="Limpiar", width=10, command=limpia)
 c = Button(master, text="GENERAR", width=10, command=motor)
 
-b.grid(row=8, column=0, sticky=E)
-c.grid(row=8, column=1)
+b.grid(row=nter+5, column=0, sticky=E)
+c.grid(row=nter+5, column=1)
 
-Label(master, text="   ").grid(row=9, column=0, columnspan=2)
+Label(master, text="   ").grid(row=nter+6, column=0, columnspan=2)
 Label(master, text="   ").grid(row=0, column=3)
 
 
