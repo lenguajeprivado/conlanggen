@@ -1,7 +1,7 @@
-#conlanggen Ver 2.1
+# conlanggen Ver 2.1
 
 
-###Generador de palabras
+### Generador de palabras
 
 
 *Word generator for conlangs (in spanish)*
@@ -15,11 +15,11 @@ Su funcionamiento es muy simple.
 
 Dentro del programa vienen instrucciones completas de uso.
 
-##Instalación
+## Instalación
 
 Existen tres maneras de instalar en Linux.
 
-####Haciendo una copia de todo este repositorio de GitHub
+#### Haciendo una copia de todo este repositorio de GitHub
 
 Para instalarlo desde el repositorio (en Ubuntu, Linux Mint, Debian, etc) en la terminal escribe:
 
@@ -32,13 +32,13 @@ Para instalarlo desde el repositorio (en Ubuntu, Linux Mint, Debian, etc) en la 
     # copiar desde el repositorio
     git clone https://github.com/jackeliand/conlanggen.git
 
-####Bajando un sólo archivo comprimido
+#### Bajando un sólo archivo comprimido
 
 [Baja este archivo a tu computadora](https://github.com/jackeliand/conlanggen/raw/master/conlanggen) y puedes utilizarlo como un ejecutable más, dandole doble click o escribiendo:
 
     ./conlanggen
     
-####Bajando el código directamente.
+#### Bajando el código directamente.
 
 [Baja el programa principal](https://github.com/jackeliand/conlanggen/raw/master/conlanggen.py) y el [archivo de ayuda](https://github.com/jackeliand/conlanggen/raw/master/info.py). 
 
@@ -48,13 +48,13 @@ En la terminal escribe
 
     python conlanggen.py
     
-##Versión para Windows
+## Versión para Windows
 
 Elaboré una versión para usar en Windows.
 
 Es completamente funcional. [Encuentrala aquí](https://github.com/jackeliand/conlanggen/tree/master/Win)
 
-##Screenshots
+## Screenshots
 
 ![Lengua negra](/screenshots/01.jpg)
 
@@ -71,7 +71,7 @@ Es completamente funcional. [Encuentrala aquí](https://github.com/jackeliand/co
 
 2.1 Reparado el scroll
 
-##Acerca de...
+## Acerca de...
 Hice este programa para aprender a usar Python. 
 Está escrito en la versión 2.7.6
 
